@@ -1,0 +1,17 @@
+table{
+    width:1000px; border: 1px solid black;
+}
+th{
+    border: 1px solid black;
+    width: 25%;
+    background: aqua;
+}
+td{
+    border: 1px solid black;
+    width: 25%;
+    text-align: right;
+}
+button{
+    border: 1px solid black;
+    border-radius: 40%;
+}

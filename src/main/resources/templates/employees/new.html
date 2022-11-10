@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Employee Management System</title>
+    </head>
+    <body>
+        <h1>Employee Management System</h1>
+        <h2>Save Employee</h2>
+
+        <form action="#" th:action="@{/employees/saveEmployee}" th:object="${employee}" method="post">
+            <input type="text" th:field="*{firstName}" placeholder="Insert First name">
+            <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></p>
+
+            <input type="text" th:field="*{lastName}" placeholder="Insert Last name">
+            <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
+
+            <input type="text" th:field="*{email}" placeholder="Insert email">
+            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+
+            <label>Is an active employee</label>
+            <input type="checkbox"  name="activeEmpChk" checked="checked" >
+
+            <select th:field="*{department.id}">
+                <option th:each="department: ${listOfDepartments}" th:value="${department.id}" th:text="${department.name}"></option>
+            </select>
+<!--        Bez ovoga će se duplati ako idemo update i nešto ne ispunimo i dođe nam error,-->
+<!--        jer pošalje se novi ID i onda "new" uzme novi id, pa s ovim zadržavamo taj ID -->
+<!--        koji je od errora....-->
+            <input type="hidden" th:field="*{id}">
+
+            <button type="submit">Save Employee</button>
+        </form>
+        <hr>
+        <a th:href="@{/employees}">Back to Employees List</a>
+    </body>
+</html>
